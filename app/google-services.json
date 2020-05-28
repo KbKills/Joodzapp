@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "124282655834",
+    "firebase_url": "https://cycle-app-fb093.firebaseio.com",
+    "project_id": "cycle-app-fb093",
+    "storage_bucket": "cycle-app-fb093.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124282655834:android:5684342b7365bcf63e7463",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124282655834-s74e7udv41hfanvollcq80l784lnhhbs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.project",
+            "certificate_hash": "b6ef838b1e7573ecd5d91b9547f7b9d40616a9f0"
+          }
+        },
+        {
+          "client_id": "124282655834-lav71rfrq53llpo62gvhonvfg03jtsog.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpzPo518mZiBrgsBbzuMEti2C0k9xjTJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124282655834-lav71rfrq53llpo62gvhonvfg03jtsog.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
