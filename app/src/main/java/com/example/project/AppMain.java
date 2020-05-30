@@ -62,6 +62,10 @@ public class AppMain extends AppCompatActivity implements OnMapReadyCallback {
         googleMap.addMarker(new MarkerOptions().position(new LatLng(11.321404, 75.936788)).icon(bitmapDescriptorFromVector(this, R.drawable.ic_directions_bike_black_24dp)));
         googleMap.addMarker(new MarkerOptions().position(new LatLng(11.320804, 75.935018)).icon(bitmapDescriptorFromVector(this, R.drawable.ic_directions_bike_black_24dp)));
         googleMap.addMarker(new MarkerOptions().position(new LatLng(11.322425, 75.933885)).icon(bitmapDescriptorFromVector(this, R.drawable.ic_directions_bike_black_24dp)));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(11.323199, 75.937171)).icon(bitmapDescriptorFromVector(this, R.drawable.ic_directions_bike_black_24dp)));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(11.320217, 75.934639)).icon(bitmapDescriptorFromVector(this, R.drawable.ic_directions_bike_black_24dp)));
+
+
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
