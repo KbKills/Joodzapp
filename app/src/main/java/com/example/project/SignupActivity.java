@@ -2,8 +2,12 @@ package com.example.project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,6 +35,7 @@ import java.io.IOException;
 
 public class SignupActivity extends AppCompatActivity {
 
+    private static int MY_STORAGE_REQUEST_CODE=100;
     private EditText Name, Email, Pass, Age, Phone;
     private Button Signup;
     private ImageView Avatar;
@@ -57,7 +62,13 @@ public class SignupActivity extends AppCompatActivity {
         Avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SelectImage();
+                if (ContextCompat.checkSelfPermission(SignupActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+                {
+                    ActivityCompat.requestPermissions(SignupActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_STORAGE_REQUEST_CODE);
+                }
+                else {
+                    SelectImage();
+                }
             }
         });
 

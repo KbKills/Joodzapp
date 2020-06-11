@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -16,13 +18,14 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,28 +35,46 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AppMain extends AppCompatActivity implements OnMapReadyCallback {
     private static final String TAG = "MainActivity";
     private static final int PERMISSIONS_REQUEST_ENABLE_GPS = 9002;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 9003;
+    private static final int MY_CAMERA_REQUEST_CODE = 100;
     private static final int ERROR_DIALOG_REQUEST = 9001;
     private boolean mLocationPermissionGranted = false;
+    private boolean mCameraPermission = false;
     private MapView mapVieww;
-
     private FirebaseAuth uAuth;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_main);
         checkMapServices();
+        fab = findViewById(R.id.flbtn);
         uAuth = FirebaseAuth.getInstance();
         mapVieww = findViewById(R.id.mapView);
         mapVieww.onCreate(savedInstanceState);
         mapVieww.getMapAsync(this);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ContextCompat.checkSelfPermission(AppMain.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+                {
+                        ActivityCompat.requestPermissions(AppMain.this, new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
+                }
+                else{
+                    startActivity(new Intent(AppMain.this, Scanner.class));
+                }
+            }
+        });
     }
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Log.d(TAG, "onMapReady: map is showing on this screen");
@@ -183,7 +204,6 @@ public class AppMain extends AppCompatActivity implements OnMapReadyCallback {
                 }
             }
         }
-
     }
 
     @Override
@@ -253,5 +273,4 @@ public class AppMain extends AppCompatActivity implements OnMapReadyCallback {
         super.onLowMemory();
         mapVieww.onLowMemory();
     }
-
 }
